@@ -1,0 +1,5 @@
+english_file ./englishFile/english.txt
+chinese_file_path ./chineseFile/chineseFilePath.txt
+ip 127.0.0.1
+port 9999
+thread_num 4 
