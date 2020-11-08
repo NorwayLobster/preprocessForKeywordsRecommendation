@@ -20,16 +20,16 @@ int main(int argc, char**argv){
     Configuration config(argv[1]);
 //    Configuration config("./conf.dat");
     config.showConfig();
-	string english_file = config.getConf()["english_file"];
-	string chinese_dictionary_fullpath = config.getConf()["chinese_dictionary_fullpath"];
-	string chinese_dictionary_index_fullpath = config.getConf()["chinese_dictionary_index_fullpath"];
-    dictProducer dictPro(english_file);
+	string en_file = config.getConf()["en_file"];
+	string cn_dictionary_fullpath = config.getConf()["cn_dictionary_fullpath"];
+	string cn_dictionary_index_fullpath = config.getConf()["cn_dictionary_index_fullpath"];
+    dictProducer dictPro(en_file);
     dictPro.buildDict();
     dictPro.buildIndex();
 //    dictPro.storeDict("../data/dictChinese.dat");
  //   dictPro.storeIndex("../data/dictChineseIndex.dat");
-    dictPro.storeDict(chinese_dictionary_fullpath);
-    dictPro.storeIndex(chinese_dictionary_index_fullpath);
+    dictPro.storeDict(cn_dictionary_fullpath);
+    dictPro.storeIndex(cn_dictionary_index_fullpath);
     
     return 0;
 }

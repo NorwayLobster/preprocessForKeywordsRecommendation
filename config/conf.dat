@@ -1,7 +1,7 @@
-english_file ./englishFile/english.txt
-chinese_file_path ./chineseFile/chineseFilePath.txt
-chinese_dictionary_fullpath ./outputData/dictChinese.dat
-chinese_dictionary_index_fullpath ./outputData/dictChineseIndex.dat
+en_file ./inputData/englishFile/english.txt
+cn_file_path ./inputData/chineseFile/chineseFilePaths.txt
+en_dictionary_fullpath ./outputData/dictChinese.dat
+en_dictionary_index_fullpath ./outputData/dictChineseIndex.dat
 ip 127.0.0.1
 port 9999
 thread_num 4 
