@@ -1,18 +1,29 @@
 cmake_minimum_required( VERSION 3.5)
 project(preprocessForKeywordsRecommendation)
 set(SOURCES 
-      src/configure.cc
       src/main.cc
-      ...
+      src/configure.cc
+      src/dictProducer.cc
 )
 add_executable( ${PROJECT_NAME} ${SOURCES})
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC ${PROJECT_SOURCE_DIR}/include
 )
+
+find_package(Boost 1.46.1 REQUIRED COMPONENTS filesystem system)
+
+# Include the boost headers
+target_include_directories( ${PROJECT_NAME}
+    PRIVATE ${Boost_INCLUDE_DIRS}
+)
+
+# link against the boost libraries
 target_link_libraries(${PROJECT_NAME}
-      boost::filesystem 
-      sub::cppjieba
+    PRIVATE
+    ${Boost_SYSTEM_LIBRARY}
+    ${Boost_FILESYSTEM_LIBRARY}
+      #sub::cppjieba
 )
 
 

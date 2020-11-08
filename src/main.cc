@@ -12,21 +12,24 @@ using std::endl;
 using std::cerr;
 
 int main(int argc, char**argv){
-	if(4!=argc){
-		cerr<<"args error: ./a.out conf.dat dict.dat dictIndex.dat"<<endl;
+	if(2!=argc){
+		cerr<<"args error: ./a.out conf.dat"<<endl;
+		// cerr<<"args error: ./a.out conf.dat dict.dat dictIndex.dat"<<endl;
 		exit(EXIT_FAILURE);
 	}
     Configuration config(argv[1]);
 //    Configuration config("./conf.dat");
     config.showConfig();
 	string english_file = config.getConf()["english_file"];
+	string chinese_dictionary_fullpath = config.getConf()["chinese_dictionary_fullpath"];
+	string chinese_dictionary_index_fullpath = config.getConf()["chinese_dictionary_index_fullpath"];
     dictProducer dictPro(english_file);
     dictPro.buildDict();
     dictPro.buildIndex();
 //    dictPro.storeDict("../data/dictChinese.dat");
  //   dictPro.storeIndex("../data/dictChineseIndex.dat");
-    dictPro.storeDict(argv[2]);
-    dictPro.storeIndex(argv[3]);
+    dictPro.storeDict(chinese_dictionary_fullpath);
+    dictPro.storeIndex(chinese_dictionary_index_fullpath);
     
     return 0;
 }
