@@ -20,9 +20,13 @@ int main(int argc, char**argv){
     Configuration config(argv[1]);
 //    Configuration config("./conf.dat");
     config.showConfig();
-	string en_file = config.getConf()["en_file"];
-	string cn_dictionary_fullpath = config.getConf()["cn_dictionary_fullpath"];
-	string cn_dictionary_index_fullpath = config.getConf()["cn_dictionary_index_fullpath"];
+	string project_root_dir = config.getConf().at("project_root_dir");
+	string en_file = project_root_dir+config.getConf().at("en_file");
+	string cn_dictionary_fullpath = project_root_dir+config.getConf()["en_dictionary_fullpath"];
+	string cn_dictionary_index_fullpath =project_root_dir+config.getConf()["en_dictionary_index_fullpath"];
+    cout<<"en_file:"<<en_file<<endl;
+    cout<<"cn_dict...:"<<cn_dictionary_fullpath<<std::endl;
+    cout<<"cn_dict_index...:"<<cn_dictionary_index_fullpath<<std::endl;
     dictProducer dictPro(en_file);
     dictPro.buildDict();
     dictPro.buildIndex();

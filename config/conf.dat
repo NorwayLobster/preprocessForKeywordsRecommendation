@@ -1,7 +1,8 @@
-en_file ./inputData/englishFile/english.txt
-cn_file_path ./inputData/chineseFile/chineseFilePaths.txt
-en_dictionary_fullpath ./outputData/dictChinese.dat
-en_dictionary_index_fullpath ./outputData/dictChineseIndex.dat
+project_root_dir /mnt/hgfs/ChengWang/C++/Projects/repo/preprocessForKeywordsRecommendation/
+en_file inputData/englishFile/english.txt
+en_dictionary_fullpath outputData/dictChinese.dat
+en_dictionary_index_fullpath outputData/dictChineseIndex.dat
+cn_file_path inputData/chineseFile/chineseFilePaths.txt
 ip 127.0.0.1
 port 9999
 thread_num 4 

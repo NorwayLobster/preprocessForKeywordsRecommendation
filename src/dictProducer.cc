@@ -60,6 +60,7 @@ dictProducer::~dictProducer(){
 
 void dictProducer::buildDict(){
     cout<<"buildDict()"<<endl;
+    std::cout<<"_filePath:"<<_filePath<<std::endl;
     ifstream ifs(_filePath);
     if(!ifs){
         cerr<<"ifs error"<<endl;
