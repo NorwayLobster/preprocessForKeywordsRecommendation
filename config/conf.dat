@@ -1,7 +1,7 @@
 project_root_dir /mnt/hgfs/ChengWang/C++/Projects/repo/preprocessForKeywordsRecommendation/
 en_file inputData/englishFile/english.txt
-en_dictionary_fullpath outputData/dictChinese.dat
-en_dictionary_index_fullpath outputData/dictChineseIndex.dat
+en_dictionary_fullpath outputData/enDict.dat
+en_dictionary_index_fullpath outputData/enDictIndex.dat
 cn_file_path inputData/chineseFile/chineseFilePaths.txt
 ip 127.0.0.1
 port 9999
