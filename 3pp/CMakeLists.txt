@@ -1,3 +1,5 @@
 cmake_minimum_required( VERSION 3.5)
 project(preprocessForKeywordsRecommendation)
 add_subdirectory(cppjieba)
+add_subdirectory(helloworld)
+add_subdirectory(utilities)

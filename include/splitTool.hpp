@@ -17,6 +17,6 @@ class splitTool{
 public:
 	splitTool();
 	virtual	~splitTool();
-	virtual vector<string> cut(const string & sentence)=0;
+	virtual void cut(const string & sentence, vector<string>&)=0;
 };
 #endif

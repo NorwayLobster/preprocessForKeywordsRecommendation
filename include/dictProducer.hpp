@@ -6,8 +6,8 @@
 //  Copyright © 2019 ChengWangMacPro15.4. All rights reserved.
 //
 
-#ifndef wordStatistics_hpp
-#define wordStatistics_hpp
+#ifndef __wordStatistics_hpp__
+#define __wordStatistics_hpp__
 
 #include <iostream>
 #include <vector>
@@ -17,8 +17,9 @@
 #include <map>
 #include "Noncopyable.h"
 #include "configure.hpp"
-#include "splitTool.hpp"
-using namespace std;
+#include "splitToolCppJieba.hpp"
+// #include "splitTool.hpp"
+// using namespace std;
 
 #if 0
 class Configuration:public Noncopyable
@@ -34,26 +35,22 @@ public:
     string __chineseFilePath;
 };
 #endif
-
+// class splitTool;//前向声明的用法？？？
 class dictProducer:Noncopyable{
 public:
-    dictProducer(string &);
-    dictProducer(string & ,splitTool *psplitTool);
+    dictProducer();
+    dictProducer(splitTool *psplitTool);
     ~dictProducer();
-    void buildDict();
-    void buildChinsesDict();
-    void buildIndex();
-    void storeDict(const string &filename);
-    void storeIndex(const string &filename);
+    void buildDict(const std::string &filename);
+    void buildChineseDict(const std::string &filename);
+    void storeDict(const std::string &filename);
 private:
-    vector<string> __file;
+    std::vector<std::string> __words;
 //    unordered_map<string,int> __hashDict;
-    map<string,int> __hashDict;
+    std::map<std::string,int> __hashDict;
 //    map<string,int> __mDict;
-    vector<pair<string,int>> __vDict;
-    map<string, set<int>> __dictIndex;
+    // std::vector<std::pair<std::string,int>> __vDict;
 //    unordered_map<string, set<int>> __dictIndex;
-    string & _filePath;
 	splitTool * _psplitTool;
 };
 

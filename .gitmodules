@@ -1,3 +1,6 @@
 [submodule "3pp/cppjieba"]
 	path = 3pp/cppjieba
 	url = git@github.com:yanyiwu/cppjieba.git
+[submodule "3pp/utilities"]
+	path = 3pp/utilities
+	url = git@github.com:NorwayLobster/utilities.git

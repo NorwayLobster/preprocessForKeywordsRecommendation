@@ -10,12 +10,11 @@
 #include "splitTool.hpp"
 using std::cout;
 using std::endl;
-class splitToolEnglish:
-	public splitTool
+class splitToolBaiDuLAC: public splitTool
 {
 public:
-	splitToolEnglish();
-	~splitToolEnglish();
-	vector<string> cut(const string & sentence);
+	splitToolBaiDuLAC();
+	~splitToolBaiDuLAC();
+	virtual vector<string> cut(const string & sentence);
 };
 #endif

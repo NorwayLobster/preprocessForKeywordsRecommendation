@@ -4,16 +4,15 @@
  /// @date    2020-02-24 19:54:50
  ///
  
-#include "splitToolEnglish.hpp"
+#include "splitToolBaiDuLAC.hpp"
 using std::cout;
 using std::endl;
-splitToolEnglish::splitToolEnglish(){
+splitToolEnglish::splitToolBaiDuLAC(){
 	cout<<"splitToolEnglish() ctor"<<endl;
 }
-splitToolEnglish::~splitToolEnglish(){
+splitToolEnglish::~splitToolBaiduLAC(){
 	cout<<"~splitToolEnglish()"<<endl;
 }
 
-vector<string> splitToolEnglish:: cut(const string & sentence){
-
+vector<string> splitToolBaiDuLAC:: cut(const string & sentence){ 
 }

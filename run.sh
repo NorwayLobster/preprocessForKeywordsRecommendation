@@ -1,3 +1,10 @@
+rm -rf build
+mkdir build
+cd build
+cmake ..
+make -j
+make install
+cd ..
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./build/install/lib
 export PATH=$PATH:./build/install/bin
 

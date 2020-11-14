@@ -9,3 +9,7 @@ the preprocessing for Keywords Recommendation System
 ## step 6: re-factor it into a microsevice, based on K8S and Docker
 ## step 7: add CI/CD 
 ## step 8: add a web interface
+
+
+## 按微服务的那个回调架构设计, bussiness logic写在requestHandler里面,
+## 定时任务 每天定时执行，进行增量update index和字典

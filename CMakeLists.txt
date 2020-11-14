@@ -1,9 +1,13 @@
 cmake_minimum_required( VERSION 3.5)
 project(preprocessForKeywordsRecommendation)
+add_subdirectory(3pp)
 set(SOURCES 
       src/main.cc
       src/configure.cc
       src/dictProducer.cc
+      src/indexProducer.cc
+      src/splitTool.cc
+      src/splitToolCppJieba.cc
 )
 add_executable( ${PROJECT_NAME} ${SOURCES})
 
@@ -23,7 +27,9 @@ target_link_libraries(${PROJECT_NAME}
     PRIVATE
     ${Boost_SYSTEM_LIBRARY}
     ${Boost_FILESYSTEM_LIBRARY}
-      #sub::cppjieba
+    sub::cppjieba
+    sub::helloworld
+    sub::utilities
 )
 
 
@@ -35,6 +41,7 @@ endif()
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin) 
 # how to install sub library, install(TARGETS ${} DESTINATION bin) 
+# install(TARGETS sub::helloworld LIBRARY DESTINATION lib) 
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include DESTINATION include) 
 install(FILES ${PROJECT_SOURCE_DIR}/config/conf.dat DESTINATION etc) 
 ####Install

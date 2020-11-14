@@ -6,14 +6,18 @@
 //  Copyright © 2019 ChengWangMacPro15.4. All rights reserved.
 //
 
-#include "dictProducer.hpp"
+#include <iostream>
+#include <string>
 #include <fstream>
 #include <sstream>
-
 #include <stdio.h>
+
 #include "configure.hpp"
 #include "dictProducer.hpp"
 //no this headfile #include <stringstream>
+using std::string;
+using std::cout;
+using std::endl;
 void preprocess(string & s){
     for(auto ite = s.begin();ite!=s.end();++ite){
         if(!isalpha(*ite)){
@@ -49,29 +53,56 @@ void Configuration::showConfig(){
 #endif
 
 
-dictProducer::dictProducer(string & filePath):
-_filePath(filePath){
-    cout<<"dicrProducer()"<<endl;
+dictProducer::dictProducer(){
+    std::cout<<"dicrProducer()"<<std::endl;
 }
+
+dictProducer::dictProducer(splitTool*p) 
+:_psplitTool(p){
+    std::cout<<"dicrProducer(splitTool*)"<<std::endl;
+}
+
 
 dictProducer::~dictProducer(){
-    cout<<"~dicrProducer()"<<endl;
+    std::cout<<"~dicrProducer()"<<std::endl;
 }
 
-void dictProducer::buildDict(){
-    cout<<"buildDict()"<<endl;
-    std::cout<<"_filePath:"<<_filePath<<std::endl;
-    ifstream ifs(_filePath);
+//way1: 整篇文章一个大字符串，然后jieba解析, 弊端：大内存占用
+//way2: 每行每行解析，弊端：词组被换行分开
+void dictProducer::buildChineseDict( const std::string & _filePath){ 
+    std::cout<<"buildChineseDict()"<<std::endl;
+    std::ifstream ifs(_filePath);
     if(!ifs){
-        cerr<<"ifs error"<<endl;
+        std::cerr<<"ifstream error"<<endl;
+    }
+    string article;
+    string line;
+    while(std::getline(ifs,line)){
+        article+=line;
+    }
+    _psplitTool->cut(article,__words);
+    for(auto word:__words){
+        __hashDict[word]+=1;
+    }
+    __words.clear();//内存不动，size减为0
+}
+
+
+
+void dictProducer::buildDict(const std::string & _filePath){
+    std::cout<<"buildDict()"<<std::endl;
+    std::cout<<"_filePath:"<<_filePath<<std::endl;
+    std::ifstream ifs(_filePath);
+    if(!ifs){
+        std::cerr<<"ifs error"<<std::endl;
         return ;
     }
-    string word;
-    vector<string> v;
-    string line;
+    std::string word;
+    std::vector<std::string> v;
+    std::string line;
 //    unordered_map<string, int> hash;
-    stringstream ss;
-    while(getline(ifs,line)){
+    std::stringstream ss;
+    while(std::getline(ifs,line)){
         //        v.push_back(line);
         ss.clear();
         ss<<line;
@@ -82,49 +113,20 @@ void dictProducer::buildDict(){
             __hashDict[word]+=1;
         }
     }
-    for(auto &__pair: __hashDict){
-        __vDict.push_back(__pair);//里面是放着__pair的引用还是，它的copy 答：它的copy？？？？？？？？？？？？？？？
-    }
 }
 
-void dictProducer::buildIndex(){
-    cout<<"buildIndex()"<<endl;
-    string str;
-    stringstream ss;
-    for(auto i=0;i<__vDict.size();++i){
-        for(char c:__vDict[i].first)
-        {//字符 怎么转 字符串
-            ss.clear();
-            ss<<c;
-            //            ss<<c<<endl;
-            ss>>str;
-//            cout<<"str:"<<str<<endl;
-            auto ite = __dictIndex.find(str);//find的key的类型是string
-            //            cout<<"c:"<<c<<endl;
-            if(__dictIndex.end()==ite)
-            {
-                set<int>  __set; __set.insert(i);
-                //            error:   index_dict[str]=make_pair(str, std::move(__set));
-                __dictIndex.insert(std::make_pair(str, std::move(__set)));
-                //fuck!! c :是字符，str是string                index_dict.insert(std::make_pair(c, std::move(__set)));
-            }
-            else{ ite->second.insert(i); }
-        }
-    }
-    return ;
-}
+
+
 void dictProducer::storeDict(const string &filename){
-    ofstream ofs(filename);
-    for(auto & _pair: __vDict)
-        ofs<<_pair.first<<" "<<_pair.second<<endl;
+    std::cout<<"storeDict(const string &)"<<std::endl;
+    std::ofstream ofs(filename);
+
+    for(auto &_pair: __hashDict){
+        // __vDict.push_back(__pair);//里面是放着__pair的引用还是，它的copy 答：它的copy？？？？？？？？？？？？？？？
+    // }
+    // for(auto & _pair: __vDict)
+        ofs<<_pair.first<<" "<<_pair.second<<std::endl;
+    }
     return ;
 }
-void dictProducer::storeIndex(const string &filename){
-    ofstream ofs(filename);
-    for(auto & _pair: __dictIndex){
-        ofs<<_pair.first;
-        for(auto a: _pair.second) ofs<<" "<<a;
-        ofs<<endl;
-    }
-   return ;
-}
+
