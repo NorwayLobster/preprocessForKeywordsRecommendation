@@ -50,7 +50,7 @@ void indexProducer::buildIndex(const std::string& dictFullPath){
             // ss<<c;
             // cout<<"c:"<<c<<endl;//LOG_DEBUG("c:",c);
             // ss>>str;
-           cout<<"str:"<<str<<endl;
+        //    cout<<"str:"<<str<<endl;
             auto ite = __dictIndex.find(str);//find的key的类型是string
             //            cout<<"c:"<<c<<endl;
             if(__dictIndex.end()==ite){

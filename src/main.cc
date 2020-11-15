@@ -21,18 +21,17 @@ int main(int argc, char**argv){
 		exit(EXIT_FAILURE);
 	}
     Configuration config(argv[1]);
-//    Configuration config("./conf.dat");
-    config.showConfig();
+    // config.showConfig();
 	string project_root_dir = config.getConf().at("project_root_dir");
 
 //en
-#if 0
+#if 1
 	string en_file = project_root_dir+config.getConf().at("en_file");
 	string en_dictionary_fullpath = project_root_dir+config.getConf()["en_dictionary_fullpath"];
 	string en_dictionary_index_fullpath =project_root_dir+config.getConf()["en_dictionary_index_fullpath"];
-    cout<<"en_file:"<<en_file<<endl;
-    cout<<"en_dict...:"<<en_dictionary_fullpath<<std::endl;
-    cout<<"en_dict_index...:"<<en_dictionary_index_fullpath<<std::endl;
+    // cout<<"en_file:"<<en_file<<endl;
+    // cout<<"en_dict...:"<<en_dictionary_fullpath<<std::endl;
+    // cout<<"en_dict_index...:"<<en_dictionary_index_fullpath<<std::endl;
     dictProducer dictPro;
     dictPro.buildDict(en_file);
     dictPro.storeDict(en_dictionary_fullpath); //dictPro.storeDict("../data/dictChinese.dat");
@@ -69,14 +68,14 @@ int main(int argc, char**argv){
     string line;
     while(std::getline(ifs,line)){
 	string cn_file_path = project_root_dir+"inputData/"+line;
-        cout<<"filePullPath:"<<cn_file_path<<endl;
+        // cout<<"filePullPath:"<<cn_file_path<<endl;
         cnDictPro.buildChineseDict(cn_file_path);
     }
     cnDictPro.storeDict(cn_dictionary_fullpath); //dictPro.storeDict("../data/dictChinese.dat");
 
-    indexProducer indexPro;
-    indexPro.buildIndex(cn_dictionary_fullpath);
-    indexPro.storeIndex(cn_dictionary_index_fullpath); //dictPro.storeIndex("../data/dictChineseIndex.dat");
+    indexProducer cnIndexPro;
+    cnIndexPro.buildIndex(cn_dictionary_fullpath);
+    cnIndexPro.storeIndex(cn_dictionary_index_fullpath); //dictPro.storeIndex("../data/dictChineseIndex.dat");
 #endif
     return 0;
 }

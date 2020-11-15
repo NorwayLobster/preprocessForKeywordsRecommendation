@@ -59,12 +59,3 @@ void Configuration::showConfig(){
 		
 }
 
-#if __MAIN__
-int main(){
-	Configuration c("./conf.dat");
-	c.showConfig();
-	return 0;
-
-
-}
-#endif
